@@ -6,7 +6,7 @@
 .dice {
     margin-top: 5vh;
     height: 40vh;
-    opacity: 0.85;
+    opacity: 0.8;
 }
 
 .dice:hover { 
@@ -19,4 +19,5 @@
 .message {
     margin-top: 2vh;
     color: #304FFE;
+    font-weight: 600;
 }

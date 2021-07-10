@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
-import dice from '../assets/dice.png';
-import './StartScreen.css'
+import dice from '../assets/dice.png'
+import '../styles/StartScreen.css'
 
 export default class StartScreen extends React.Component  {
     constructor(props) {
