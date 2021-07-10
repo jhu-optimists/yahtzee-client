@@ -1,0 +1,23 @@
+.start {
+    text-align: center;
+    margin-top: 15vh;
+}
+
+.dice {
+    margin-top: 5vh;
+    height: 40vh;
+    opacity: 0.8;
+}
+
+.dice:hover { 
+    opacity: 1;
+    transform: rotate(5deg);
+    cursor: pointer;
+    
+  }
+
+.message {
+    margin-top: 2vh;
+    color: #304FFE;
+    font-weight: 600;
+}

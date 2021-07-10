@@ -1,0 +1,26 @@
+#dice-area-container {
+    text-align: center;
+}
+
+#dice-container {
+    height: 100px;
+    width: 470px;
+    margin: auto;
+}
+
+#roll-button {
+    font-family: Menlo;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    height: 30px;
+    width: 50px;
+    background-color: #0d47a1;
+    color: white;
+    text-align: center;
+}
+
+#roll-button:hover {
+    cursor: pointer;
+    background-color: #1565c0;
+}

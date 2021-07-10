@@ -1,0 +1,32 @@
+#scorecard {
+    border-collapse: collapse;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+#scorecard td, #scorecard th {
+    border: 1px solid #c5cae9;
+    padding: 3px;
+}
+
+#scorecard th {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+#scorecard td {
+    font-size: 13px;
+    text-align: center;
+}
+
+.small-col {
+    width: 2.5vw;
+}
+
+.first-col {
+    text-align: left !important;
+}
+
+#total-col {
+    width: 5vw;
+}

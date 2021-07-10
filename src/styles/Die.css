@@ -1,0 +1,25 @@
+.die-container {
+    float:left;
+    margin: 6px;
+}
+.die-container:hover {
+    background-color: #e3f2fd;
+    cursor: pointer;
+    
+}
+
+.die {
+    width: 65px;
+}
+
+.hold {
+    background-color: #64b5f6;
+}
+
+.free {
+    background-color: none;
+}
+
+/* .hold:hover {
+    cursor: not-allowed;
+} */
