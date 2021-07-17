@@ -8,10 +8,12 @@ export default class StartScreen extends React.Component  {
     
         this.state = {
             showMessage: false,
+            userName: "",
         };
 
         this.onEnter = this.onEnter.bind(this);
         this.onLeave = this.onLeave.bind(this);
+        this.changeUser = this.changeUser(this);
     }
 
     onEnter() {
@@ -23,6 +25,12 @@ export default class StartScreen extends React.Component  {
     onLeave() {
         this.setState({
             showMessage: false,
+        })
+    }
+
+    changeUser() {
+        this.setState({
+            userName: "TBD"
         })
     }
 
@@ -42,6 +50,11 @@ export default class StartScreen extends React.Component  {
                         </div>
                         : <div></div>
                     }
+
+                <div>
+                    Enter your username:
+                    <input onChange={} type="text"></input>    
+                </div>    
                 </div>
             </div>
         )
