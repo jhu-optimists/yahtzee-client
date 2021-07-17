@@ -14,17 +14,27 @@ export default class App extends React.Component  {
     this.logIn = this.logIn.bind(this);
   }
 
-  logIn() {
-    this.setState({
-      loggedIn: true,
-      username: "Bob"
-    })
+
+  logIn(user) {
+    fetch(`http://127.0.0.1:5000/user?username=${user}`)
+    .then(res => res.json())
+    .then(
+      userData => {
+        this.setState({
+          loggedIn: true,
+          user: userData
+        });
+      },
+      err => {
+        console.log("Error!"); // TODO
+      }
+    )
   }
 
   render() {
     return(
         <div className="app">
-          {this.state.loggedIn ? <Board user={this.state.username} />: <StartScreen logIn={this.logIn} />}
+          {this.state.loggedIn ? <Board user={this.state.user} />: <StartScreen logIn={this.logIn} />}
         </div>
     )
 

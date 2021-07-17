@@ -3,7 +3,13 @@ import '../styles/Scorecard.css'
 
 export default class Scorecard extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.sendScore = this.sendScore.bind(this);
+  }
+
+  sendScore(e) {
+    e.preventDefault();
+    this.props.submitScore();
   }
 
   render() {
@@ -32,25 +38,27 @@ export default class Scorecard extends React.Component {
             <th id="total-col">TOTAL</th>
           </tr>
           <tr>
-            <td className="first-col">{this.props.user}</td>
-            <td>6</td>
-            <td>12</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td className="first-col">{this.props.user.username}</td>
+            <td>{this.props.score.ones}</td>
+            <td>{this.props.score.twos}</td>
+            <td>{this.props.score.threes}</td>
+            <td>{this.props.score.fours}</td>
+            <td>{this.props.score.fives}</td>
+            <td>{this.props.score.sixes}</td>
+            <td>{this.props.score.upperPreTotal}</td>
+            <td>{this.props.score.upperBonus}</td>
+            <td>{this.props.score.upperTotal}</td>
+            <td>{this.props.score.threeKind}</td>
+            <td>{this.props.score.fourKind}</td>
+            <td>{this.props.score.fullHouse}</td>
+            <td>{this.props.score.smStraight}</td>
+            <td>{this.props.score.lgStraight}</td>
+            <td>{this.props.score.yahtzee}</td>
+            <td>{this.props.score.chance}</td>
+            <td>{this.props.score.lowerTotal}</td>
+            <td onClick={this.sendScore}>
+              <a>{this.props.score.total}</a>
+            </td>
           </tr>
         </table>
       </div>

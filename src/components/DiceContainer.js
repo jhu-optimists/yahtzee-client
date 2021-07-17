@@ -13,11 +13,12 @@ export default class DiceContainer extends React.Component {
 
 		this.rollDice = this.rollDice.bind(this);
 		this.toggleDieStatus = this.toggleDieStatus.bind(this);
+		this.generateScore = this.generateScore.bind(this)
 	}
 
 	rollDice() {
 		let newPips = [...this.state.pips];
-		for (let i = 0; i < 5; i++){
+		for (let i = 0; i < 6; i++){
 			if (!this.state.hold[i]) {
 				const num = Math.floor(Math.random() * 6)
 				newPips[i] = num
@@ -36,8 +37,48 @@ export default class DiceContainer extends React.Component {
 		});
 	}
 
+	// FOR SKELETAL DEMO
+	generateScore(e) {
+		e.preventDefault();
+		const one = Math.floor(Math.random() * 6) + 1;
+		const two = Math.floor(Math.random() * 12) + 1;
+		const three =  Math.floor(Math.random() * 18) + 1;
+		const four = Math.floor(Math.random() * 24) + 1;
+		const five = Math.floor(Math.random() * 30) + 1;
+		const six = Math.floor(Math.random() * 36) + 1;
+		const upperP = one + two + three + four + five + six;
+		const upperB = upperP >= 63 ? upperP + 35 : 0;
+		const upperT = upperP + upperB;
+		const threeK = Math.floor(Math.random() * 18) + 1;
+		const fourK = Math.floor(Math.random() * 24) + 1;
+		const ch = Math.floor(Math.random() * 36) + 1;
+		const lowerT = threeK + fourK + ch + 105;
+		const tot = lowerT + upperT
+
+		const dummyScore = {
+			ones: one,
+			twos: two,
+			threes: three,
+			fours: four,
+			fives: five,
+			sixes: six,
+			upperPreTotal: upperP,
+			upperBonus: upperB,
+			upperTotal: upperT,
+			threeKind: threeK,
+			fourKind: fourK,
+			fullHouse: 25,
+			smStraight:30,
+			lgStraight: 0,
+			yahtzee: 50,
+			chance: ch,
+			lowerTotal: lowerT,
+			total: tot,
+		}
+		this.props.updateSelfScore(dummyScore)
+	}
+
 	render () {
-		console.log(this.state.pips);
 		return (
 			<div id="dice-area-container">
 				<div id="dice-container">
@@ -51,6 +92,11 @@ export default class DiceContainer extends React.Component {
 				<div id="button-container">
 					<button id="roll-button" onClick={this.rollDice}>
 						ROLL
+					</button>
+				</div>
+				<div id="dice-test-button-container">
+					<button id="dice-test-button" onClick={this.generateScore}>
+						TEST: FINISH GAME
 					</button>
 				</div>
 			</div>
