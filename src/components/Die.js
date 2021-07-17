@@ -19,7 +19,6 @@ export default class Die extends React.Component {
 	}
 
 	render () {
-		console.log(this.props)
 		const diceImages = [one, two, three, four, five, six]
 		return (
 			<div className="die-container">
