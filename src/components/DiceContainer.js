@@ -40,18 +40,18 @@ export default class DiceContainer extends React.Component {
 	// FOR SKELETAL DEMO
 	generateScore(e) {
 		e.preventDefault();
-		const one = Math.floor(Math.random() * 6) + 1;
-		const two = Math.floor(Math.random() * 12) + 1;
-		const three =  Math.floor(Math.random() * 18) + 1;
-		const four = Math.floor(Math.random() * 24) + 1;
-		const five = Math.floor(Math.random() * 30) + 1;
-		const six = Math.floor(Math.random() * 36) + 1;
+		const one = Math.floor(Math.random() * 5) + 1;
+		const two = Math.floor(Math.random() * 10) + 1;
+		const three =  Math.floor(Math.random() * 15) + 1;
+		const four = Math.floor(Math.random() * 20) + 1;
+		const five = Math.floor(Math.random() * 25) + 1;
+		const six = Math.floor(Math.random() * 30) + 1;
 		const upperP = one + two + three + four + five + six;
 		const upperB = upperP >= 63 ? upperP + 35 : 0;
 		const upperT = upperP + upperB;
 		const threeK = Math.floor(Math.random() * 18) + 1;
 		const fourK = Math.floor(Math.random() * 24) + 1;
-		const ch = Math.floor(Math.random() * 36) + 1;
+		const ch = Math.floor(Math.random() * 30) + 1;
 		const lowerT = threeK + fourK + ch + 105;
 		const tot = lowerT + upperT
 
