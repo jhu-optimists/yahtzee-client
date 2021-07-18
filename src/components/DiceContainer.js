@@ -7,7 +7,7 @@ export default class DiceContainer extends React.Component {
 		super(props);
 		
 		this.state = {
-			pips: [0,1,2,3,4,5],
+			pips: [0,1,2,3,4],
 			hold: [false, false, false, false, false],
 		};
 
@@ -18,7 +18,7 @@ export default class DiceContainer extends React.Component {
 
 	rollDice() {
 		let newPips = [...this.state.pips];
-		for (let i = 0; i < 6; i++){
+		for (let i = 0; i < 5; i++){
 			if (!this.state.hold[i]) {
 				const num = Math.floor(Math.random() * 6)
 				newPips[i] = num
@@ -40,18 +40,18 @@ export default class DiceContainer extends React.Component {
 	// FOR SKELETAL DEMO
 	generateScore(e) {
 		e.preventDefault();
-		const one = Math.floor(Math.random() * 6) + 1;
-		const two = Math.floor(Math.random() * 12) + 1;
-		const three =  Math.floor(Math.random() * 18) + 1;
-		const four = Math.floor(Math.random() * 24) + 1;
-		const five = Math.floor(Math.random() * 30) + 1;
-		const six = Math.floor(Math.random() * 36) + 1;
+		const one = Math.floor(Math.random() * 5) + 1;
+		const two = Math.floor(Math.random() * 10) + 1;
+		const three =  Math.floor(Math.random() * 15) + 1;
+		const four = Math.floor(Math.random() * 20) + 1;
+		const five = Math.floor(Math.random() * 25) + 1;
+		const six = Math.floor(Math.random() * 30) + 1;
 		const upperP = one + two + three + four + five + six;
 		const upperB = upperP >= 63 ? upperP + 35 : 0;
 		const upperT = upperP + upperB;
 		const threeK = Math.floor(Math.random() * 18) + 1;
 		const fourK = Math.floor(Math.random() * 24) + 1;
-		const ch = Math.floor(Math.random() * 36) + 1;
+		const ch = Math.floor(Math.random() * 30) + 1;
 		const lowerT = threeK + fourK + ch + 105;
 		const tot = lowerT + upperT
 
@@ -87,7 +87,6 @@ export default class DiceContainer extends React.Component {
 					<Die id={2} pip={this.state.pips[2]} toggle={this.toggleDieStatus} hold={this.state.hold[2]} />
 					<Die id={3} pip={this.state.pips[3]} toggle={this.toggleDieStatus} hold={this.state.hold[3]} />
 					<Die id={4} pip={this.state.pips[4]} toggle={this.toggleDieStatus} hold={this.state.hold[4]} />
-					<Die id={5} pip={this.state.pips[5]} toggle={this.toggleDieStatus} hold={this.state.hold[5]} />
 				</div>
 				<div id="button-container">
 					<button id="roll-button" onClick={this.rollDice}>
