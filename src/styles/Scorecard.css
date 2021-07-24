@@ -5,28 +5,49 @@
 }
 
 #scorecard td, #scorecard th {
-    border: 1px solid #c5cae9;
+    border: 1px solid #646ea3;
     padding: 3px;
 }
 
 #scorecard th {
+    padding-top: 8px;
+    padding-bottom: 6px;
     font-size: 13px;
     font-weight: 600;
+    color: #e8eaf6;
 }
 
 #scorecard td {
     font-size: 13px;
     text-align: center;
+    /* color: #9fa8da; */
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #3f51b5;
 }
 
 .small-col {
-    width: 2.5vw;
+    width: 2.8vw;    
 }
 
 .first-col {
     text-align: left !important;
+    padding-left: 10px !important;
+    font-weight: 600 !important;
 }
 
 #total-col {
     width: 5vw;
+}
+
+
+#scorecard a {
+    color: #ffeb3b;
+}
+
+#scorecard a:hover {
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
 }

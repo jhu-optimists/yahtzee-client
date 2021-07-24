@@ -1,6 +1,6 @@
 #board {
-  width: 99.5vw;
-  height: 99.5vh;
+  width: 100vw;
+  height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
@@ -10,33 +10,33 @@
   margin: 0;
   height: 15vh;
   width: 100%;
-  border: 2px solid green;
+  background-color: #283593;
 }
 
 #board-bottom {
   margin:0;
-  height: 83.5vh;
-  border: 2px solid red;
+  padding:0;
+  height: 85vh;
   width: 100%;
 }
 
 #board-play, #board-chat {
-  height:83.5vh;
+  height:85vh;
 }
 
 #board-play {
- border: 2px solid purple;
  float:left;
  width: 68%;
  margin: 0;
+ background-color: #fafaff;
 }
 
 #board-chat {
   padding: 0;
   margin: 0;
-  width: 31%;
+  width: 32%;
   float:left;
-  border:2px solid blue;
+  background-color: #e8eaf6;
 }
 
 #board-self {
@@ -46,4 +46,47 @@
 #board-oppo {
   margin-top: 20px;
   text-align:center;
+}
+
+.board-modal {
+    font-family: Menlo;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e8eaf6; opacity:0.92;
+    color: #1a237e;
+    text-align: center;
+    padding-top: 30vh;
+}
+
+.board-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#new-game-btn-container {
+  margin-top: 30px;
+}
+
+#new-game-btn {
+  font-family: Menlo;
+  font-weight: 800;
+  font-size: 12px;
+  color: white;
+  background-color: #0d47a1;
+  height: 35px;
+  padding-top: 2px;
+  width: 150px;
+  border: none;
+  border-radius: 3px;
+}
+
+#new-game-btn:hover {
+  cursor: pointer;
+  background-color: #1565c0;
 }

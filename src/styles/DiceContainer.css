@@ -4,23 +4,48 @@
 
 #dice-container {
     height: 100px;
-    width: 470px;
+    width: 425px;
     margin: auto;
 }
 
 #roll-button {
     font-family: Menlo;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 13px;
+    /* font-weight: 600; */
     border: none;
-    height: 30px;
-    width: 50px;
+    height: 35px;
+    width: 55px;
     background-color: #0d47a1;
     color: white;
     text-align: center;
+    border-radius: 3px;
 }
 
 #roll-button:hover {
     cursor: pointer;
-    background-color: #1565c0;
+    background-color: #651fff;
+}
+
+#dice-test-button {
+    font-family: Menlo;
+    font-size: 15px;
+    font-weight: 300;
+    border: none;
+    height: 40px;
+    width: 200px;
+    background-color: #ffc107;
+    color: rgb(8, 19, 72);
+    text-align: center;
+    border-radius: 3px;
+    padding-top: 5px;
+}
+
+#dice-test-button:hover {
+    cursor: pointer;
+    color: white;
+    opacity: 0.9;
+}
+
+#dice-test-button-container {
+    margin-top: 100px;
 }
