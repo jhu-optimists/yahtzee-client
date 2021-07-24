@@ -5,6 +5,7 @@ import OpponentArea from './OpponentArea'
 import Scorecard from './Scorecard'
 import ChatArea from './ChatArea'
 import '../styles/Board.css'
+import { socket } from "../socket"
 
 export default class Board extends React.Component {
     constructor(props) {
@@ -76,6 +77,10 @@ export default class Board extends React.Component {
             console.log("Error!"); //TODO
           }
         )
+    }
+
+    componentDidMount() {
+        socket.emit("join", this.props.user.username);
     }
 
     render() {

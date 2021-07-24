@@ -12,9 +12,10 @@ const ChatArea = () => {
     }
     
     useEffect(() => {
-        socket.emit("join", "Bob")
-        socket.on("join_success", (msg) => {
-            handleServerMessage(msg);
+        socket.on("broadcast_game_state", function(gameState) {
+            console.log("GameState: " + gameState);
+            gameState = JSON.parse(gameState);
+            setMessages(gameState["chat_messages"]);
         });
 
         // socket.on("message", (msg) => {  // need listener for general incoming chat messages
@@ -35,7 +36,7 @@ const ChatArea = () => {
 
     return(
         <div>
-            <p>{messages}</p>
+            <p>Chat: {messages}</p>
             {/* chat entry box below */}
             {/* <form onSubmit={e => sendMessage(e)}>
                 <input onChange={handleTyping} type="text"></input>
