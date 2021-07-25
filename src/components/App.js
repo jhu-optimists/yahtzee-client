@@ -20,6 +20,10 @@ export default class App extends React.Component  {
     .then(res => res.json())
     .then(
       userData => {
+        if ("error_message" in userData && userData["error_message"] != "") {
+          alert("Server error: " + userData["error_message"]);
+          return;
+        }
         this.setState({
           loggedIn: true,
           user: userData

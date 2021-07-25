@@ -1,32 +1,49 @@
-import React from 'react';
-import '../styles/ChatArea.css'
+import React, { useContext, useState, useEffect } from 'react';
+import { SocketContext } from '../socket';
 
-export default class ChatArea extends React.Component {
+const ChatArea = () => {
+    const [messages, setMessages] = useState('')
+    const [outgoingMsg, setOutgoing] = useState('')
+    const socket = useContext(SocketContext);
 
-    constructor(props) {
-        super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
+    const handleServerMessage = (m) => {
+        setMessages(m);
+        console.log(messages);
+    }
+    
+    useEffect(() => {
+        socket.on("broadcast_game_state", function(gameState) {
+            console.log("GameState: " + gameState);
+            gameState = JSON.parse(gameState);
+            setMessages(gameState["chat_messages"]);
+        });
+
+        // socket.on("message", (msg) => {  // need listener for general incoming chat messages
+        //     console.log(msg);
+        //     handleServerMessage(msg);
+        // });
+    })
+
+    const handleTyping = (e) => {
+        const newMsg = e.target.value;
+        setOutgoing(newMsg);
     }
 
-    handleSubmit(e) {
+    const sendMessage = (e) => {
         e.preventDefault();
+        socket.emit("message", outgoingMsg);
     }
 
-    render() {
-        return(
-            <div>
-                <div id="chat-container">
-                    {this.props.user.username} has joined the game!
-                </div>
-
-                <div>
-                    <form onSubmit={this.handleSubmit} id="chat-input">
-                        <textarea id="chat-text" />
-                        <input id="chat-button" type="submit" value="Send"/>
-                    </form>
-                </div>
-            </div>
-        )
-    }
-
+    return(
+        <div>
+            <p>Chat: {messages}</p>
+            {/* chat entry box below */}
+            {/* <form onSubmit={e => sendMessage(e)}>
+                <input onChange={handleTyping} type="text"></input>
+                <input type="submit" value="Send"></input>
+            </form> */}
+        </div>  
+    )
 }
+
+export default ChatArea
