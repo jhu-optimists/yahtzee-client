@@ -1,6 +1,7 @@
 import React from 'react'
 import Die from './Die'
 import '../styles/DiceContainer.css'
+import { socket } from "../socket"
 
 export default class DiceContainer extends React.Component {
 	constructor(props) {
@@ -9,11 +10,13 @@ export default class DiceContainer extends React.Component {
 		this.state = {
 			pips: [0,1,2,3,4],
 			hold: [false, false, false, false, false],
+			gameState: []
 		};
 
 		this.rollDice = this.rollDice.bind(this);
 		this.toggleDieStatus = this.toggleDieStatus.bind(this);
 		this.generateScore = this.generateScore.bind(this)
+		this.startGame = this.startGame.bind(this);
 	}
 
 	rollDice() {
@@ -35,6 +38,26 @@ export default class DiceContainer extends React.Component {
 		this.setState({
 			hold: holds,
 		});
+	}
+
+	componentDidMount() {
+		var self = this;
+		socket.on("broadcast_game_state", function(gameState) {
+			console.log("GameState from DiceContainer: " + gameState);
+			self.setState({
+				gameState: JSON.parse(gameState)
+			});
+		});
+	}
+
+	startGame(e) {
+		e.preventDefault();
+		console.log("start game logging state dice container:" + this.state.gameState);
+		if (this.state.gameState["has_game_started"] == false) {
+			socket.emit("start_game");
+		} else {
+			alert("Game has already started.");
+		}
 	}
 
 	// FOR SKELETAL DEMO
@@ -93,9 +116,16 @@ export default class DiceContainer extends React.Component {
 						ROLL
 					</button>
 				</div>
+				{/*
 				<div id="dice-test-button-container">
 					<button id="dice-test-button" onClick={this.generateScore}>
 						TEST: FINISH GAME
+					</button>
+				</div>
+				*/}
+				<div id="dice-start-game-button-container">
+					<button id="dice-start-game-button" onClick={this.startGame}>
+						Start Game
 					</button>
 				</div>
 			</div>

@@ -80,7 +80,8 @@ export default class Board extends React.Component {
     }
 
     componentDidMount() {
-        socket.emit("join", this.props.user.username);
+        socket.emit("join");
+        socket.emit("get_user_with_current_turn");
     }
 
     render() {
