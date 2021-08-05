@@ -30,6 +30,11 @@ export default class DiceContainer extends React.Component {
 		this.setState({
 			pips: newPips,
 		});
+		if (this.props.user.username == this.state.gameState["user_with_turn"]) {
+			// Send the dice values to the server for logging.
+			socket.emit("dice_values", newPips.map(n => n + 1));
+		}
+		document.dispatchEvent(new CustomEvent("diceRoll", { detail: newPips.map(n => n + 1) }));
 	}
 
 	toggleDieStatus(id) {
@@ -43,11 +48,19 @@ export default class DiceContainer extends React.Component {
 	componentDidMount() {
 		var self = this;
 		socket.on("broadcast_game_state", function(gameState) {
-			console.log("GameState from DiceContainer: " + gameState);
 			self.setState({
 				gameState: JSON.parse(gameState)
 			});
 		});
+		// When the turn ends, we clear the held dice.
+		document.addEventListener(
+			"clearHeldDice", 
+			function() {
+				self.setState({
+					hold: [false, false, false, false, false]
+				});
+			}
+		);
 	}
 
 	startGame(e) {

@@ -93,7 +93,7 @@ export default class Board extends React.Component {
                 <div id="board-bottom">
                     <div id="board-play">
                         <div id="board-oppo">
-                            <OpponentArea />
+                            <OpponentArea user={this.props.user} />
                         </div>
                         <div id="board-self">
                             <SelfArea updateSelfScore={this.updateSelfScore} user={this.props.user} />
