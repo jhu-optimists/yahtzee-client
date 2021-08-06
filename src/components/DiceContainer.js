@@ -1,6 +1,7 @@
 import React from 'react'
 import Die from './Die'
 import '../styles/DiceContainer.css'
+import { socket } from "../socket"
 
 export default class DiceContainer extends React.Component {
 	constructor(props) {
@@ -9,16 +10,23 @@ export default class DiceContainer extends React.Component {
 		this.state = {
 			pips: [0,1,2,3,4],
 			hold: [false, false, false, false, false],
+			gameState: []
 		};
 
 		this.rollDice = this.rollDice.bind(this);
 		this.toggleDieStatus = this.toggleDieStatus.bind(this);
 		this.generateScore = this.generateScore.bind(this)
+		this.startGame = this.startGame.bind(this);
 	}
 
 	rollDice() {
+		if ((this.state.gameState["dice_roll_count"] == 3) || 
+			(this.state.gameState["has_game_started"] == false) || 
+			(this.props.user.username != this.state.gameState["user_with_turn"])) {
+			return;
+		}
 		let newPips = [...this.state.pips];
-		for (let i = 0; i < 5; i++){
+		for (let i = 0; i < 5; i++) {
 			if (!this.state.hold[i]) {
 				const num = Math.floor(Math.random() * 6)
 				newPips[i] = num
@@ -27,6 +35,11 @@ export default class DiceContainer extends React.Component {
 		this.setState({
 			pips: newPips,
 		});
+		if (this.props.user.username == this.state.gameState["user_with_turn"]) {
+			// Send the dice values to the server for logging.
+			socket.emit("dice_values", newPips.map(n => n + 1));
+		}
+		document.dispatchEvent(new CustomEvent("diceRoll", { detail: newPips.map(n => n + 1) }));
 	}
 
 	toggleDieStatus(id) {
@@ -35,6 +48,34 @@ export default class DiceContainer extends React.Component {
 		this.setState({
 			hold: holds,
 		});
+	}
+
+	componentDidMount() {
+		var self = this;
+		socket.on("broadcast_game_state", function(gameState) {
+			self.setState({
+				gameState: JSON.parse(gameState)
+			});
+		});
+		// When the turn ends, we clear the held dice.
+		document.addEventListener(
+			"clearHeldDice", 
+			function() {
+				self.setState({
+					hold: [false, false, false, false, false]
+				});
+			}
+		);
+	}
+
+	startGame(e) {
+		e.preventDefault();
+		console.log("start game logging state dice container:" + this.state.gameState);
+		if (this.state.gameState["has_game_started"] == false) {
+			socket.emit("start_game");
+		} else {
+			alert("Game has already started.");
+		}
 	}
 
 	// FOR SKELETAL DEMO
@@ -93,9 +134,16 @@ export default class DiceContainer extends React.Component {
 						ROLL
 					</button>
 				</div>
+				{/*
 				<div id="dice-test-button-container">
 					<button id="dice-test-button" onClick={this.generateScore}>
 						TEST: FINISH GAME
+					</button>
+				</div>
+				*/}
+				<div id="dice-start-game-button-container">
+					<button id="dice-start-game-button" onClick={this.startGame}>
+						Start Game
 					</button>
 				</div>
 			</div>

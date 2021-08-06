@@ -20,13 +20,20 @@
   width: 100%;
 }
 
-#board-play, #board-chat {
+#board-play, #board-chat, #board-transcript {
   height:85vh;
+}
+
+#board-transcript {
+  float:left;
+  width: 25%;
+  margin: 0;
+  background-color: #fafaff;
 }
 
 #board-play {
  float:left;
- width: 68%;
+ width: 50%;
  margin: 0;
  background-color: #fafaff;
 }
@@ -34,7 +41,7 @@
 #board-chat {
   padding: 0;
   margin: 0;
-  width: 32%;
+  width: 25%;
   float:left;
   background-color: #e8eaf6;
 }

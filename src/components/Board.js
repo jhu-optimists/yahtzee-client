@@ -4,6 +4,7 @@ import SelfArea from './SelfArea'
 import OpponentArea from './OpponentArea'
 import Scorecard from './Scorecard'
 import ChatArea from './ChatArea'
+import Transcript from './Transcript'
 import '../styles/Board.css'
 import { socket } from "../socket"
 
@@ -80,7 +81,8 @@ export default class Board extends React.Component {
     }
 
     componentDidMount() {
-        socket.emit("join", this.props.user.username);
+        socket.emit("join");
+        socket.emit("get_user_with_current_turn");
     }
 
     render() {
@@ -90,9 +92,12 @@ export default class Board extends React.Component {
                     <Scorecard submitScore={this.submitScore} score={this.state.selfScore} user={this.props.user} />
                 </div>
                 <div id="board-bottom">
+                    <div id="board-transcript">
+                        <Transcript />
+                    </div>
                     <div id="board-play">
                         <div id="board-oppo">
-                            <OpponentArea />
+                            <OpponentArea user={this.props.user} />
                         </div>
                         <div id="board-self">
                             <SelfArea updateSelfScore={this.updateSelfScore} user={this.props.user} />

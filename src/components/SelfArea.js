@@ -9,7 +9,7 @@ export default class SelfArea extends React.Component {
     render() {
         return(
             <div>
-                <DiceContainer updateSelfScore={this.props.updateSelfScore}/>
+                <DiceContainer updateSelfScore={this.props.updateSelfScore} user={this.props.user}/>
             </div>
         )
     }

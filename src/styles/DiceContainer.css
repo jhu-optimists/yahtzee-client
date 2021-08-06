@@ -49,3 +49,27 @@
 #dice-test-button-container {
     margin-top: 100px;
 }
+
+#dice-start-game-button {
+    font-family: Menlo;
+    font-size: 15px;
+    font-weight: 300;
+    border: none;
+    height: 40px;
+    width: 200px;
+    background-color: #ffc107;
+    color: rgb(8, 19, 72);
+    text-align: center;
+    border-radius: 3px;
+    padding-top: 5px;
+}
+
+#dice-start-game-button:hover {
+    cursor: pointer;
+    color: white;
+    opacity: 0.9;
+}
+
+#dice-start-game-button-container {
+    margin-top: 80px;
+}
