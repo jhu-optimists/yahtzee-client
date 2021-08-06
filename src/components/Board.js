@@ -4,6 +4,7 @@ import SelfArea from './SelfArea'
 import OpponentArea from './OpponentArea'
 import Scorecard from './Scorecard'
 import ChatArea from './ChatArea'
+import Transcript from './Transcript'
 import '../styles/Board.css'
 import { socket } from "../socket"
 
@@ -91,6 +92,9 @@ export default class Board extends React.Component {
                     <Scorecard submitScore={this.submitScore} score={this.state.selfScore} user={this.props.user} />
                 </div>
                 <div id="board-bottom">
+                    <div id="board-transcript">
+                        <Transcript />
+                    </div>
                     <div id="board-play">
                         <div id="board-oppo">
                             <OpponentArea user={this.props.user} />

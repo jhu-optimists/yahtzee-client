@@ -20,8 +20,13 @@ export default class DiceContainer extends React.Component {
 	}
 
 	rollDice() {
+		if ((this.state.gameState["dice_roll_count"] == 3) || 
+			(this.state.gameState["has_game_started"] == false) || 
+			(this.props.user.username != this.state.gameState["user_with_turn"])) {
+			return;
+		}
 		let newPips = [...this.state.pips];
-		for (let i = 0; i < 5; i++){
+		for (let i = 0; i < 5; i++) {
 			if (!this.state.hold[i]) {
 				const num = Math.floor(Math.random() * 6)
 				newPips[i] = num
