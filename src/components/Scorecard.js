@@ -437,6 +437,10 @@ export default class Scorecard extends React.Component {
             <td>{this.state.actualScore.lowerTotal}</td>
             <td>{this.state.actualScore.total}</td>
           </tr>
+          {
+            
+
+          }
         </table>
       </div>
     )

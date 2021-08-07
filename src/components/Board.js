@@ -3,6 +3,7 @@ import Modal from 'react-modal'
 import SelfArea from './SelfArea'
 import OpponentArea from './OpponentArea'
 import Scorecard from './Scorecard'
+import OpponentScorecards from './OpponentScorecards'
 import ChatArea from './ChatArea'
 import Transcript from './Transcript'
 import '../styles/Board.css'
@@ -90,6 +91,7 @@ export default class Board extends React.Component {
             <div id="board">
                 <div id="board-top">
                     <Scorecard submitScore={this.submitScore} score={this.state.selfScore} user={this.props.user} />
+                    <OpponentScorecards user={this.props.user.username} />
                 </div>
                 <div id="board-bottom">
                     <div id="board-transcript">
