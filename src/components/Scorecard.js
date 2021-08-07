@@ -215,7 +215,7 @@ export default class Scorecard extends React.Component {
       }
     }, function() {
       // Send the total score to the server. Server broadcasts the turn end and the turn indicator listen for the broadcast.
-      socket.emit("end_turn", this.props.user.username, this.state.actualScore.total);
+      socket.emit("end_turn", this.props.user.username, this.state.actualScore);
       this.resetPossibleScore();
     });
   }

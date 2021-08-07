@@ -21,7 +21,7 @@ export default class OpponentArea extends React.Component {
         if (key == self.props.user.username) {
           return;
         }
-        scoreMessage.push(key + ": " + currentScoreMap[key]);
+        scoreMessage.push(key + ": " + currentScoreMap[key]["total"]);
       });
 
       self.setState({
