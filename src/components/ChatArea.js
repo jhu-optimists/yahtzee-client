@@ -1,15 +1,15 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
-import { SocketContext } from '../socket';
+import React, { useContext, useState, useEffect } from 'react'
+import { SocketContext } from '../socket'
+import '../styles/ChatArea.css'
 
 const ChatArea = ({ user }) => {
     const socket = useContext(SocketContext);
     const [messages, setMessages] = useState([]);
     const [gameStatusMessage, setGameStatusMessage] = useState('');
-    const inputBox = useRef(null);
+    const [outgoingMessage, setOutgoing] = useState('');
 
     const handleServerMessage = (m) => {
         setMessages(m);
-        console.log(messages);
     }
     
     useEffect(() => {
@@ -22,31 +22,36 @@ const ChatArea = ({ user }) => {
                 setGameStatusMessage("Game has not started.");
             }
         });
-
-        // socket.on("message", (msg) => {  // need listener for general incoming chat messages
-        //     console.log(msg);
-        //     handleServerMessage(msg);
-        // });
     }, [])
 
     const sendMessage = (e) => {
         e.preventDefault();
-        let userMessage = inputBox.current.value;
-        socket.emit("chat_message", user.username, userMessage);
+        socket.emit("chat_message", user.username, outgoingMessage);
+        setOutgoing('');
+    }
+
+    const handleTyping = (e) => {
+        setOutgoing(e.target.value);
     }
 
     return(
-        <div>
-            <p>Game Status: {gameStatusMessage}</p>
-            <p>Chat:</p>
-            {messages.map((message, index)=>{
-                return <p>{message}</p>
-            })}
-            {/* chat entry box below */}
-            <form onSubmit={e => sendMessage(e)}>
-                <input class="message" type="text" ref={inputBox}></input>
-                <input type="submit" value="Send"></input>
-            </form>
+        <div id="chat-container">
+            <div id="chat-header">Y++ CHATROOM</div>
+            <div id="chat-messages-container">
+                {messages.map((message, index)=>{
+                    return <p>{message}</p>
+                })}
+            </div>
+            <div id="chat-input-container">
+                <form onSubmit={e => sendMessage(e)}>
+                    <input
+                        id="chat-input-textbox" onChange={handleTyping}
+                        value={outgoingMessage} class="message" type="text"
+                    >
+                    </input>
+                    <input id="chat-button" type="submit" value="Send"></input>
+                </form>
+            </div>
         </div>  
     )
 }

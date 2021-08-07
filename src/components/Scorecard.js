@@ -1,6 +1,6 @@
 import React from 'react'
-import '../styles/Scorecard.css'
 import { socket } from "../socket"
+import '../styles/Scorecard.css'
 
 export default class Scorecard extends React.Component {
   constructor(props) {
@@ -345,20 +345,20 @@ export default class Scorecard extends React.Component {
         <table id="scorecard">
           <tr>
             <th className="first-col">Player</th>
-            <th className="small-col">1s</th>
-            <th className="small-col">2s</th>
-            <th className="small-col">3s</th>
-            <th className="small-col">4s</th>
-            <th className="small-col">5s</th>
-            <th className="small-col">6s</th>
+            <th className="small-col">Ones</th>
+            <th className="small-col">Twos</th>
+            <th className="small-col">Threes</th>
+            <th className="small-col">Fours</th>
+            <th className="small-col">Fives</th>
+            <th className="small-col">Sixes</th>
             <th>Total</th>
             <th>Bonus</th>
             <th>Upper Total</th>
-            <th>3 Kind</th>
-            <th>4 Kind</th>
+            <th>Three Kind</th>
+            <th>Four Kind</th>
             <th>Full House</th>
-            <th>Sm Straight</th>
-            <th>Lg Straight</th>
+            <th>Small Straight</th>
+            <th>Large Straight</th>
             <th>Yahtzee</th>
             <th>Chance</th>
             <th>Lower Total</th>

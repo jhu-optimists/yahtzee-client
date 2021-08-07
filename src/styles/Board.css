@@ -28,14 +28,14 @@
   float:left;
   width: 25%;
   margin: 0;
-  background-color: #fafaff;
+  background-color: #f5f8ff;
 }
 
 #board-play {
  float:left;
  width: 50%;
  margin: 0;
- background-color: #fafaff;
+ background-color: #f5f8ff;
 }
 
 #board-chat {
@@ -43,16 +43,17 @@
   margin: 0;
   width: 25%;
   float:left;
-  background-color: #e8eaf6;
-}
+  background-color: #f5f8ff;
 
-#board-self {
-  margin-top: 50px;
 }
 
 #board-oppo {
-  margin-top: 20px;
   text-align:center;
+  border: 1px solid #f5f8ff;
+}
+
+#board-self {
+  /* height: 60%; */
 }
 
 .board-modal {

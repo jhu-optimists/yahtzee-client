@@ -1,5 +1,6 @@
 import React from 'react';
 import { socket } from "../socket"
+import '../styles/Transcript.css'
 
 export default class Transcript extends React.Component {
   constructor(props) {
@@ -21,11 +22,16 @@ export default class Transcript extends React.Component {
 
   render() {
     return (
-      <div>
-        <p>Transcript:</p>
-            {this.state.transcript.map((message, index)=>{
-                return <p>{message}</p>
-            })}
+      <div id="transcript-container">
+        <div id="transcript-header">
+          <span id="header-highlight">GAME TRANSCRIPT</span>
+        </div>
+        <div id="transcript-updates">
+          {this.state.transcript.map((message, index)=>{
+                return <p className="transcript-log-container"><span className="transcript-log">{message}</span></p>
+          })}
+        </div>
+            
       </div>
     )
   }

@@ -1,12 +1,17 @@
 import React from 'react';
 import { socket } from "../socket"
+import OpponentDice from './OpponentDice'
+import '../styles/OpponentArea.css'
 
 export default class OpponentArea extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-        scores: []
+        scores: [],
+        gameStarted: false,
+        currUser: '',
+        diceVals: []
     };
   }
 
@@ -25,18 +30,27 @@ export default class OpponentArea extends React.Component {
       });
 
       self.setState({
-        scores: scoreMessage
+        scores: scoreMessage,
+        gameStarted: gameStateObject.has_game_started,
+        currUser: gameStateObject.user_with_turn,
+        diceVals: gameStateObject.dice_values
       });
     });
   }
 
   render() {
     return (
-      <div>
-        <p>Opponent Scores:</p>
+      <div className="opponent-container">
+        {
+          this.state.gameStarted ? 
+            <OpponentDice username={this.props.user.username} currUser={this.state.currUser} diceVals={this.state.diceVals}/>:
+            <div>Waiting for someone to start game...</div>
+        }
+        
+        {/* <p>Opponent Scores:</p>
             {this.state.scores.map((score, index)=>{
                 return <p>{score}</p>
-            })}
+            })} */}
       </div>
     )
   }
