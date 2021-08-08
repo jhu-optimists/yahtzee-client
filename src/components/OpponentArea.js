@@ -44,7 +44,7 @@ export default class OpponentArea extends React.Component {
         {
           this.state.gameStarted ? 
             <OpponentDice username={this.props.user.username} currUser={this.state.currUser} diceVals={this.state.diceVals}/>:
-            <div>Waiting for someone to start game...</div>
+            <div id="oppo-waiting-message">Waiting for someone to start the game...</div>
         }
         
         {/* <p>Opponent Scores:</p>

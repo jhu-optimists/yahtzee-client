@@ -2,3 +2,9 @@
     margin: 35px 35px 0px 25px;
 }
 
+#oppo-waiting-message {
+    padding-top: 30px;
+    margin-bottom: 30px;
+    font-size: 18px;
+    color: #1a237e;
+}

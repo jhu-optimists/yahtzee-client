@@ -8,6 +8,16 @@
     margin: auto;
 }
 
+#dice-roll-count {
+    margin-bottom: 20px;
+    color: #0d47a1;
+    font-size: 14px;
+}
+
+#dice-roll-val {
+    font-weight: 600;
+}
+
 #roll-button {
     font-family: Menlo;
     font-size: 13px;
