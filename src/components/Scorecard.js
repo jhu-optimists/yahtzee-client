@@ -201,6 +201,7 @@ export default class Scorecard extends React.Component {
       this.state.actualScore.fullHouse +
       this.state.actualScore.smStraight + 
       this.state.actualScore.lgStraight + 
+      this.state.actualScore.yahtzee + 
       this.state.actualScore.chance;
     const tot = lowerT + upperT
 
