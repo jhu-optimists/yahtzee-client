@@ -8,7 +8,7 @@
 
 #board-top {
   margin: 0;
-  height: 17vh;
+  min-height: 16vh;
   width: 100%;
   background-color: #283593;
 }
@@ -16,12 +16,13 @@
 #board-bottom {
   margin:0;
   padding:0;
-  height: 83vh;
+  height: 84vh;
   width: 100%;
+  background-color: #f5f8ff;
 }
 
 #board-play, #board-chat, #board-transcript {
-  height:83vh;
+  height: 83vh;
 }
 
 #board-transcript {
@@ -52,9 +53,6 @@
   border: 1px solid #f5f8ff;
 }
 
-#board-self {
-  /* height: 60%; */
-}
 
 .board-modal {
     font-family: Menlo;

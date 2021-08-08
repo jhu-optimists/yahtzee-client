@@ -64,6 +64,14 @@ export default class DiceContainer extends React.Component {
 	render () {
 		return (
 			<div id="dice-area-container">
+				{
+					(this.state.gameState["has_game_started"]) &&
+					(this.props.user.username == this.state.gameState["user_with_turn"]) ?
+					<div id="dice-roll-count">
+						Rolls left: <span id="dice-roll-val">{3 - this.state.gameState.dice_roll_count}</span>
+					</div>:
+					<div></div>
+				}
 				<div id="dice-container">
 					<Die id={0} pip={this.state.pips[0]} toggle={this.toggleDieStatus} hold={this.state.hold[0]} />
 					<Die id={1} pip={this.state.pips[1]} toggle={this.toggleDieStatus} hold={this.state.hold[1]} />

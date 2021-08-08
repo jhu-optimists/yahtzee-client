@@ -28,7 +28,7 @@
     overflow-y: scroll; 
     -ms-overflow-style: none;
     scrollbar-width: none;  
-    height: 84%;
+    height: 83%;
 }
 
 #chat-messages-container::-webkit-scrollbar {

@@ -1,6 +1,5 @@
 #oppo-dice-area {
     height: 23vh;
-    font-size: 16px;
     margin-left: 30px;
     margin-right: 30px;
 }
@@ -11,8 +10,10 @@
 }
 
 #oppo-rolling {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    color:#1a237e;
+    font-size: 18px;
 }
 
 #oppo-dice-container {
