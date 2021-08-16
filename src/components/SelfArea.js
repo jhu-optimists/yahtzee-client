@@ -19,7 +19,8 @@ export default class SelfArea extends React.Component {
           let gameStateObject = JSON.parse(gameState);
           self.setState({
             currUser: gameStateObject.user_with_turn,
-            gameStarted: gameStateObject.has_game_started
+            gameStarted: gameStateObject.has_game_started,
+            gameEnded: gameStateObject.has_game_ended
           });
         });
     }
@@ -30,21 +31,25 @@ export default class SelfArea extends React.Component {
 	}
 
     render() {
-        return(
-            <div>
-                <div className={`self-container ${this.props.username == this.state.currUser ? "self-focus" : ""}`}>
-                    <DiceContainer updateSelfScore={this.props.updateSelfScore} user={this.props.user}/>
-                </div>
-                {this.state.gameStarted == true ?
-                   <div></div>:
-                    <div id="dice-start-game-button-container">
-                        <button id="dice-start-game-button" onClick={this.startGame}>
-                            Start Game
-                        </button>
+        if (this.state.gameEnded) {
+            return(<div></div>);
+        } else {
+            return(
+                <div>
+                    <div className={`self-container ${this.props.username == this.state.currUser ? "self-focus" : ""}`}>
+                        <DiceContainer updateSelfScore={this.props.updateSelfScore} user={this.props.user}/>
                     </div>
-                }
-            </div>
-        )
+                    {this.state.gameStarted == true ?
+                    <div></div>:
+                        <div id="dice-start-game-button-container">
+                            <button id="dice-start-game-button" onClick={this.startGame}>
+                                Start Game
+                            </button>
+                        </div>
+                    }
+                </div>
+            )
+        }
     }
 
 }

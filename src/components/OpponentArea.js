@@ -33,25 +33,30 @@ export default class OpponentArea extends React.Component {
         scores: scoreMessage,
         gameStarted: gameStateObject.has_game_started,
         currUser: gameStateObject.user_with_turn,
-        diceVals: gameStateObject.dice_values
+        diceVals: gameStateObject.dice_values,
+        gameEnded: gameStateObject.has_game_ended
       });
     });
   }
 
   render() {
-    return (
-      <div className="opponent-container">
-        {
-          this.state.gameStarted ? 
-            <OpponentDice username={this.props.user.username} currUser={this.state.currUser} diceVals={this.state.diceVals}/>:
-            <div id="oppo-waiting-message">Waiting for someone to start the game...</div>
-        }
-        
-        {/* <p>Opponent Scores:</p>
-            {this.state.scores.map((score, index)=>{
-                return <p>{score}</p>
-            })} */}
-      </div>
-    )
+    if (this.state.gameEnded) {
+      return(<div className="opponent-container">Game has ended for all players.</div>);
+    } else {
+      return(
+        <div className="opponent-container">
+          {
+            this.state.gameStarted ? 
+              <OpponentDice username={this.props.user.username} currUser={this.state.currUser} diceVals={this.state.diceVals}/>:
+              <div id="oppo-waiting-message">Waiting for someone to start the game...</div>
+          }
+          
+          {/* <p>Opponent Scores:</p>
+              {this.state.scores.map((score, index)=>{
+                  return <p>{score}</p>
+              })} */}
+        </div>
+      )
+    }
   }
 }
