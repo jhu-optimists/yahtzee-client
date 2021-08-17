@@ -52,7 +52,6 @@ export default class OpponentScorecards extends React.Component {
   render() {
     return(
       <div>
-        {console.log(this.props.user)}
         {(this.state.gameStarted && this.state.showOpponents) ?
           <table id="oppo-table">
             {this.state.scoreList.map((numList,i) =>(

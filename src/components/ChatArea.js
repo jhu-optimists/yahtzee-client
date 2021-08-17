@@ -14,7 +14,7 @@ const ChatArea = ({ user }) => {
     
     useEffect(() => {
         socket.on("broadcast_game_state", function(gameState) {
-            console.log("GameState from ChatArea: " + gameState);
+            console.log("Game state:" + gameState);
             gameState = JSON.parse(gameState);
             setMessages(gameState["chat_messages"]);
             setGameStatusMessage(gameState["game_status_message"]);
@@ -26,7 +26,7 @@ const ChatArea = ({ user }) => {
 
     const sendMessage = (e) => {
         e.preventDefault();
-        socket.emit("chat_message", user.username, outgoingMessage);
+        socket.emit("chat_message", user, outgoingMessage);
         setOutgoing('');
     }
 

@@ -23,7 +23,7 @@ export default class OpponentArea extends React.Component {
       let scoreMessage = [];
 
       Object.keys(currentScoreMap).forEach(function(key) {
-        if (key == self.props.user.username) {
+        if (key == self.props.user) {
           return;
         }
         scoreMessage.push(key + ": " + currentScoreMap[key]);
@@ -47,14 +47,9 @@ export default class OpponentArea extends React.Component {
         <div className="opponent-container">
           {
             this.state.gameStarted ? 
-              <OpponentDice username={this.props.user.username} currUser={this.state.currUser} diceVals={this.state.diceVals}/>:
+              <OpponentDice user={this.props.user} currUser={this.state.currUser} diceVals={this.state.diceVals}/>:
               <div id="oppo-waiting-message">Waiting for someone to start the game...</div>
           }
-          
-          {/* <p>Opponent Scores:</p>
-              {this.state.scores.map((score, index)=>{
-                  return <p>{score}</p>
-              })} */}
         </div>
       )
     }
