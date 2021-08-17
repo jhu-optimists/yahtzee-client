@@ -10,7 +10,7 @@ export default class DiceContainer extends React.Component {
 		this.state = {
 			pips: [0,1,2,3,4],
 			hold: [false, false, false, false, false],
-			gameState: []
+			gameState: {}
 		};
 
 		this.rollDice = this.rollDice.bind(this);
@@ -37,7 +37,7 @@ export default class DiceContainer extends React.Component {
 
 	toggleDieStatus(id) {
 		let holds = this.state.hold;
-		holds[id] = !holds[id];
+		holds[id] = (this.state.gameState.dice_roll_count>0 && this.state.gameState.dice_roll_count<3) && !holds[id];
 		this.setState({
 			hold: holds,
 		});
