@@ -1,5 +1,6 @@
 import React from 'react'
-import Modal from 'react-modal'
+import Modal from 'react-modal';
+import { socket } from "../socket"
 import SelfArea from './SelfArea'
 import OpponentArea from './OpponentArea'
 import Scorecard from './Scorecard'
@@ -7,7 +8,7 @@ import OpponentScorecards from './OpponentScorecards'
 import ChatArea from './ChatArea'
 import Transcript from './Transcript'
 import '../styles/Board.css'
-import { socket } from "../socket"
+import arrow from '../assets/arrow.png'
 
 export default class Board extends React.Component {
     constructor(props) {
@@ -38,24 +39,23 @@ export default class Board extends React.Component {
         }
         this.updateSelfScore = this.updateSelfScore.bind(this);
         this.submitScore = this.submitScore.bind(this);
-
         this.handleOpenModal = this.handleOpenModal.bind(this);
-        this.handleNewGame = this.handleNewGame.bind(this)
-
-    }
-
-    handleOpenModal () {
-        this.setState({ showModal: true });
-    }
-
-    handleNewGame() {
-        window.location.reload(false);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     updateSelfScore(score) {
         this.setState({
             selfScore: score
         });
+    }
+
+    handleOpenModal () {
+
+        this.setState({ showModal: true });
+    }
+      
+    closeModal() {
+        this.setState({ showModal: false });
     }
 
     submitScore() {
@@ -104,27 +104,28 @@ export default class Board extends React.Component {
                         <div id="board-self">
                             <SelfArea updateSelfScore={this.updateSelfScore} user={this.props.user} />
                         </div>
+                        <div id="board-arrow-container">
+                            <img onClick={this.handleOpenModal} id="board-arrow" src={arrow}/>
+                        </div>
                     </div>
                     <div id="board-chat">
                         <ChatArea user={this.props.user} />
                     </div>
-                </div>
-                <Modal
+                </div> 
+                <Modal 
                     isOpen={this.state.showModal}
-                    contentLabel="Game end message"
+                    onRequestClose={this.closeModal}
+                    contentLabel="Show records"
                     className="board-modal"
-                    overlayClassName="board-overlay"
+                    overlayClassName="board-modal-overlay"
                 >
-                    <div>
-                        <h1>Game Over!</h1>
-                        <p>{this.state.gameEndMsg}</p>
-                        <div id="new-game-btn-container">
-                            <button onClick={this.handleNewGame} id="new-game-btn">START A NEW GAME</button>
-                        </div>
-                        
-                    </div>
-                    
-                </Modal>
+                    <h1>Y++ Hall of Fame</h1>
+                    <p>Scores Here</p>
+                    <h3>Your Personal Best: </h3>
+                    <button id="board-modal-button" onClick={this.closeModal}>
+                        CLOSE
+                    </button>
+                </Modal>       
             </div>
         )
 

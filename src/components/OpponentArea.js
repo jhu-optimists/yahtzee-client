@@ -50,11 +50,6 @@ export default class OpponentArea extends React.Component {
               <OpponentDice user={this.props.user} currUser={this.state.currUser} diceVals={this.state.diceVals}/>:
               <div id="oppo-waiting-message">Waiting for someone to start the game...</div>
           }
-          
-          {/* <p>Opponent Scores:</p>
-              {this.state.scores.map((score, index)=>{
-                  return <p>{score}</p>
-              })} */}
         </div>
       )
     }
