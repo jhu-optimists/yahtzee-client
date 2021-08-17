@@ -94,7 +94,7 @@ export default class Scorecard extends React.Component {
       alert("Game has not started.");
       return;
     }
-    if (this.props.user.username != this.state.gameState["user_with_turn"]) {
+    if (this.props.user != this.state.gameState["user_with_turn"]) {
       alert("It's not your turn.");
       return;
     }
@@ -218,7 +218,7 @@ export default class Scorecard extends React.Component {
     }, function() {
       // Send the total score to the server. Server broadcasts the turn end and the turn indicator listen for the broadcast.
       console.log('* * * * actualScore: ', this.state.actualScore);
-      socket.emit("end_turn", this.props.user.username, this.state.actualScore.total, this.state.actualScore);
+      socket.emit("end_turn", this.props.user, this.state.actualScore.total, this.state.actualScore);
       this.resetPossibleScore();
     });
   }
@@ -368,7 +368,7 @@ export default class Scorecard extends React.Component {
             <th id="total-col">TOTAL</th>
           </tr>
           <tr>
-            <td className="first-col">{this.props.user.username}</td>
+            <td className="first-col">{this.props.user}</td>
             { 
               this.state.clicked.ones
               ? <td>{this.state.actualScore.ones}</td>

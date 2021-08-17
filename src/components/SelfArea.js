@@ -36,7 +36,7 @@ export default class SelfArea extends React.Component {
         } else {
             return(
                 <div>
-                    <div className={`self-container ${this.props.username == this.state.currUser ? "self-focus" : ""}`}>
+                    <div className={`self-container ${this.props.user == this.state.currUser ? "self-focus" : ""}`}>
                         <DiceContainer updateSelfScore={this.props.updateSelfScore} user={this.props.user}/>
                     </div>
                     {this.state.gameStarted == true ?

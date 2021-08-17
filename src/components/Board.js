@@ -63,7 +63,7 @@ export default class Board extends React.Component {
             method: 'POST',
             body: JSON.stringify({
                 newScore: `${this.state.selfScore.total}`,
-                user: `${this.props.user.username}`
+                user: `${this.props.user}`
             })
         };
         fetch(`http://127.0.0.1:5000/score`, requestOpts)
@@ -91,7 +91,7 @@ export default class Board extends React.Component {
             <div id="board">
                 <div id="board-top">
                     <Scorecard submitScore={this.submitScore} score={this.state.selfScore} user={this.props.user} />
-                    <OpponentScorecards user={this.props.user.username} />
+                    <OpponentScorecards user={this.props.user} />
                 </div>
                 <div id="board-bottom">
                     <div id="board-transcript">
@@ -102,7 +102,7 @@ export default class Board extends React.Component {
                             <OpponentArea user={this.props.user} />
                         </div>
                         <div id="board-self">
-                            <SelfArea username={this.props.user.username} updateSelfScore={this.updateSelfScore} user={this.props.user} />
+                            <SelfArea updateSelfScore={this.updateSelfScore} user={this.props.user} />
                         </div>
                     </div>
                     <div id="board-chat">

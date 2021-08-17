@@ -11,7 +11,7 @@ const OpponentDice = (props) => {
 
     return(
         <div id="oppo-dice-area">
-            {props.username != props.currUser ?
+            {props.user != props.currUser ?
                 <div id="oppo-focus">
                     <div id="oppo-rolling">{props.currUser} is rolling...</div>
                     <div id="oppo-dice-container">

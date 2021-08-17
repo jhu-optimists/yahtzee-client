@@ -28,7 +28,7 @@ export default class DiceContainer extends React.Component {
 		this.setState({
 			pips: newPips,
 		});
-		if (this.props.user.username == this.state.gameState["user_with_turn"]) {
+		if (this.props.user == this.state.gameState["user_with_turn"]) {
 			// Send the dice values to the server for logging.
 			socket.emit("dice_values", newPips.map(n => n + 1));
 		}
@@ -66,7 +66,7 @@ export default class DiceContainer extends React.Component {
 			<div id="dice-area-container">
 				{
 					(this.state.gameState["has_game_started"]) &&
-					(this.props.user.username == this.state.gameState["user_with_turn"]) ?
+					(this.props.user == this.state.gameState["user_with_turn"]) ?
 					<div id="dice-roll-count">
 						Rolls left: <span id="dice-roll-val">{3 - this.state.gameState.dice_roll_count}</span>
 					</div>:
@@ -81,7 +81,7 @@ export default class DiceContainer extends React.Component {
 				</div>
 				{
 					(this.state.gameState["has_game_started"]) &&
-					(this.props.user.username == this.state.gameState["user_with_turn"]) &&
+					(this.props.user == this.state.gameState["user_with_turn"]) &&
 					(this.state.gameState["dice_roll_count"] < 3)
 					 ?
 					<div id="button-container">
