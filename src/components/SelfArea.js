@@ -70,11 +70,24 @@ export default class SelfArea extends React.Component {
                             <img className="self-gif" src={gameOver}/>
                         </div>
                         <div className="self-results-heading">RESULTS</div>
-                        <div>
-                            {this.state.finalScores.map((scorePair) => (
-                                <div className="self-score">{scorePair[0]}: {scorePair[1]}</div>
+                        <hr></hr>
+                        <table id="self-hall-table">
+                            <tr>
+                                <th>Place</th>
+                                <th>Player</th>
+                                <th>Score</th>
+                            </tr>
+                            {this.state.finalScores.map((numList,i) =>(
+                                <tr key={i}>
+                                    <td>{i+1}</td>
+                                {
+                                    numList.map((num,j)=>
+                                        <td key={j}>{num}</td>
+                                    )
+                                }
+                                </tr>
                             ))}
-                        </div>
+                        </table>
                         
                         {this.state.newRecord ?
                             <div className="self-hall">{this.state.winner} wins and sets a new Hall of Fame record!</div> :
