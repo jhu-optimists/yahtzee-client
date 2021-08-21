@@ -16,6 +16,7 @@
 #board-bottom {
   margin:0;
   padding:0;
+  padding-top: 30px;
   height: 84vh;
   width: 100%;
   background-color: #f5f8ff;
@@ -53,13 +54,11 @@
   border: 1px solid #f5f8ff;
 }
 
-
 #board-arrow-container {
   position: fixed;
   bottom: 2px;
   text-align: center;
   width: 48%;
-
 }
 
 #board-arrow {
@@ -79,12 +78,11 @@
   left: 1vw;
   right: 1vw;
   bottom: 1vh;
-  background-color: #e3f2fd; opacity:0.96;
-  /* background-color:#283593; opacity:0.93; */
-  /* color: white; */
+  background-color: #e3f2fd; opacity:0.95;
   border-radius: 5px;
+  border: none !important;
   text-align: center;
-  padding-top: 10vh;
+  padding-top: 8vh;
 }
 
 .board-modal h1, h3 {
@@ -98,7 +96,6 @@
   right: 0;
   bottom: 0;
 }
-
 
 #board-modal-button {
   font-family: Menlo;
@@ -115,4 +112,29 @@
 #board-modal-button:hover {
   cursor: pointer;
   background-color: #651fff;
+}
+
+#board-hall-table {
+  width: 40%;
+  margin:auto;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+  color: #090d3b;
+}
+
+#board-hall-table td {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 17px;
+}
+
+#board-personal {
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+#board-personal-score {
+  font-weight: 400;
 }

@@ -5,10 +5,6 @@ import OpponentArea from './OpponentArea'
 import '../styles/OpponentDice.css'
 
 const OpponentDice = (props) => {
-    useEffect(() => {
-        console.log(props);
-    })
-
     return(
         <div id="oppo-dice-area">
             {props.user != props.currUser ?

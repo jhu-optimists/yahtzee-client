@@ -36,6 +36,7 @@ export default class Board extends React.Component {
             },
             showModal: false,
             gameEndMsg: "",
+            records: [],
         }
         this.updateSelfScore = this.updateSelfScore.bind(this);
         this.submitScore = this.submitScore.bind(this);
@@ -50,8 +51,19 @@ export default class Board extends React.Component {
     }
 
     handleOpenModal () {
-
-        this.setState({ showModal: true });
+        fetch(`http://127.0.0.1:5000/hall`)
+        .then(res => res.json())
+        .then(
+          resp => {
+            this.setState({
+                records: resp.records,
+                showModal: true,
+            });
+          },
+          err => {
+            console.log("Error!"); //TODO
+          }
+        )
     }
       
     closeModal() {
@@ -120,8 +132,26 @@ export default class Board extends React.Component {
                     overlayClassName="board-modal-overlay"
                 >
                     <h1>Y++ Hall of Fame</h1>
-                    <p>Scores Here</p>
-                    <h3>Your Personal Best: </h3>
+                    <table id="board-hall-table">
+                        <tr>
+                            <th>RANK</th>
+                            <th>PLAYER</th>
+                            <th>SCORE</th>
+                        </tr>
+                        {this.state.records.map((numList,i) =>(
+                            <tr key={i}>
+                                <td>{i+1}</td>
+                            {
+                                numList.map((num,j)=>
+                                    <td key={j}>{num}</td>
+                                )
+                            }
+                            </tr>
+                        ))}
+                    </table>
+                    <div id="board-personal">
+                        <h3>Your Personal Best: <span id="board-personal-score">{this.props.highScore}</span></h3>
+                    </div>
                     <button id="board-modal-button" onClick={this.closeModal}>
                         CLOSE
                     </button>

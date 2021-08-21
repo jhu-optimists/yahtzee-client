@@ -9,7 +9,8 @@ export default class App extends React.Component  {
 
     this.state = {
         loggedIn: false,
-        user: ""
+        user: "",
+        highScore: 0,
     };
     this.logIn = this.logIn.bind(this);
   }
@@ -20,7 +21,8 @@ export default class App extends React.Component  {
     .then(res => res.json())
     .then(
       userData => {
-        let playerUsername = ""
+        let playerUsername = "";
+        let playerHighScore = 0;
         // console.log(typeof(userData), userData); debugging
         if (typeof(userData) == "object") {     // socket incoming message; user already exists
           if ("error_message" in userData && userData["error_message"] != "") {
@@ -28,15 +30,18 @@ export default class App extends React.Component  {
             return;
           } else {
             playerUsername = userData["username"]
+            playerHighScore = userData["highScore"]
           }
         } else if (typeof(userData) == "string") { // REST incoming message; new user
           const resp = JSON.parse(userData)
           playerUsername = resp.username
+          playerHighScore = resp.high_score
         }
         
         this.setState({
           loggedIn: true,
-          user: playerUsername
+          user: playerUsername,
+          highScore: playerHighScore
         });
       },
       err => {
@@ -48,7 +53,7 @@ export default class App extends React.Component  {
   render() {
     return(
         <div className="app">
-          {this.state.loggedIn ? <Board user={this.state.user} />: <StartScreen logIn={this.logIn} />}
+          {this.state.loggedIn ? <Board highScore={this.state.highScore} user={this.state.user} />: <StartScreen logIn={this.logIn} />}
         </div>
     )
   }
